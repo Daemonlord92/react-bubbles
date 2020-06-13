@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Pack } from "@potion/layout";
 import { Svg, Circle } from "@potion/element";
+import Col from "reactstrap/es/Col";
 
 const Bubbles = ({ colors }) => {
   const [bubbleData, setBubbleData] = useState([]);
@@ -13,7 +14,7 @@ const Bubbles = ({ colors }) => {
   }, [colors]);
 
   return (
-    <div className="bubble-wrap">
+    <Col className="bubble-wrap">
       <p>bubbles</p>
       <Svg width={400} height={400}>
         <Pack
@@ -46,7 +47,7 @@ const Bubbles = ({ colors }) => {
           }
         </Pack>
       </Svg>
-    </div>
+    </Col>
   );
 };
 
