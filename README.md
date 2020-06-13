@@ -36,9 +36,14 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Describe how web servers work.
 
-    
+    the browser makes a call to the server via HTTP requests, once the request reaches the server, the server accepts and find the requested documents and sends it back to the browser.
 
 - [ ] Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+    POST/PUT for Create
+    GET for READ
+    PUT/POST/PATCH for Update
+    DELETE for Delete
 
 
 ## Project Set Up
