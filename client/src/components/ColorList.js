@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Col from "reactstrap/es/Col";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const initialColor = {
   color: "",
@@ -18,17 +20,35 @@ const ColorList = ({ colors, updateColors }) => {
 
   const saveEdit = e => {
     e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
+    axiosWithAuth()
+        .put("/colors/${colorToEdit.id}", colorToEdit)
+        .then(r => {
+            updateColors(colors.map(color => {
+                if (colorToEdit.id === color.id) {
+                    return r.data;
+                }
+                return color;
+            }))
+        } )
+        .catch(err => console.log(err, 'MJM:ColorList Err'))
   };
 
   const deleteColor = color => {
-    // make a delete request to delete this color
+      axiosWithAuth()
+          .delete(`/api/colors/${color.id}`)
+          .then(res => {
+              console.log(res)
+          })
+          .catch(err => {
+              console.log(err)
+          })
+      updateColors(colors.filter(col => {
+          return col.id !== color.id;
+      }))
   };
 
   return (
-    <div className="colors-wrap">
+    <Col className="colors-wrap">
       <p>colors</p>
       <ul>
         {colors.map(color => (
@@ -82,7 +102,7 @@ const ColorList = ({ colors, updateColors }) => {
       )}
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
-    </div>
+    </Col>
   );
 };
 
